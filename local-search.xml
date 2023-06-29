@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="/2023/06/29/hello-world/"/>
+    <url>/2023/06/29/hello-world/</url>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>baobao</title>
+    <link href="/2023/05/16/baobao/"/>
+    <url>/2023/05/16/baobao/</url>
+    
+    <content type="html"><![CDATA[<p>baobao</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Oracle</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Oracle</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>windows中oracle配置多个监听程序</title>
+    <link href="/2023/05/15/windows%E4%B8%ADoracle%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AA%E7%9B%91%E5%90%AC%E7%A8%8B%E5%BA%8F/"/>
+    <url>/2023/05/15/windows%E4%B8%ADoracle%E9%85%8D%E7%BD%AE%E5%A4%9A%E4%B8%AA%E7%9B%91%E5%90%AC%E7%A8%8B%E5%BA%8F/</url>
+    
+    <content type="html"><![CDATA[<p> 我的oracle版本为oracle 11.2.0.4</p><ol><li><p>找到监听文件listener.ora<br>  监听文件路径是在安装目录下\app\Administrator\product\11.2.0\dbhome_2\NETWORK\ADMIN目录下<br>  我的监听文件路径C:\app\Administrator\product\11.2.0\dbhome_2\NETWORK\ADMIN</p><span id="more"></span></li><li><p>默认的监听文件为(<strong>注:不要直接复制，对照修改即可</strong>):</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs bash"> SID_LIST_LISTENER =<br>  (SID_LIST =<br>    (SID_DESC =<br>      <span class="hljs-comment">#(SID_NAME = CLRExtProc)</span><br>      (SID_NAME = orcl)<br>      (ORACLE_HOME = C:\app\Administrator\product\11.2.0\dbhome_2)<br>      <span class="hljs-comment">#(PROGRAM = extproc)</span><br>      (ENVS = <span class="hljs-string">&quot;EXTPROC_DLLS=ONLY:C:\app\Administrator\product\11.2.0\dbhome_2\bin\oraclr11.dll&quot;</span>)<br>    )<br>  )<br><br>LISTENER =<br>  (DESCRIPTION_LIST =<br>    (DESCRIPTION =<br>      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))<br>      (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))<br>    )<br>  )<br>  ADR_BASE_LISTENER = C:\app\Administrator<br></code></pre></td></tr></table></figure></li><li><p>添加监听LISTENER1后，配置文件为:</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><code class="hljs bash"> <span class="hljs-comment"># listener.ora Network Configuration File: C:\app\Administrator\product\11.2.0\dbhome_2\network\admin\listener.ora</span><br><span class="hljs-comment"># Generated by Oracle configuration tools.</span><br><br>SID_LIST_LISTENER =<br>  (SID_LIST =<br>    (SID_DESC =<br>      <span class="hljs-comment">#(SID_NAME = CLRExtProc)</span><br>      (SID_NAME = orcl)<br>      (ORACLE_HOME = C:\app\Administrator\product\11.2.0\dbhome_2)<br>      <span class="hljs-comment">#(PROGRAM = extproc)</span><br>      (ENVS = <span class="hljs-string">&quot;EXTPROC_DLLS=ONLY:C:\app\Administrator\product\11.2.0\dbhome_2\bin\oraclr11.dll&quot;</span>)<br>    )<br>  )<br><br>LISTENER =<br>  (DESCRIPTION_LIST =<br>    (DESCRIPTION =<br>      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1521))<br>      (ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))<br>    )<br>  )<br>SID_LIST_LISTENER1 =<br>  (SID_LIST =<br>    (SID_DESC =<br>      <span class="hljs-comment">#(SID_NAME = CLRExtProc)</span><br>      (SID_NAME = orcl)<br>      (ORACLE_HOME = C:\app\Administrator\product\11.2.0\dbhome_2)<br>      <span class="hljs-comment">#(PROGRAM = extproc)</span><br>      (ENVS = <span class="hljs-string">&quot;EXTPROC_DLLS=ONLY:C:\app\Administrator\product\11.2.0\dbhome_2\bin\oraclr11.dll&quot;</span>)<br>    )<br>  )<br><br>LISTENER1 =<br>  (DESCRIPTION_LIST =<br>    (DESCRIPTION =<br>      (ADDRESS = (PROTOCOL = IPC)(KEY = EXTPROC1522))<br>      (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.8.36)(PORT = 1522))<br>    )<br>  )<br>ADR_BASE_LISTENER = C:\app\Administrator<br></code></pre></td></tr></table></figure></li><li><p>启动监听命令lsnrctl start 启动监听发现只启动了监听LISTENER<br><img src="/img/oracle/oracle1.png" alt="图片"></p></li><li><p>如果要启动新建的监听服务则需要是使用命令lsnrctl start LISTENER1<br><img src="/img/oracle/oracle2.png" alt="图片"><br>现在我们的两个监听服务就配置好了</p></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>Oracle</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Oracle</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>
